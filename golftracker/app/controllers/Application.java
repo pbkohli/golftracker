@@ -11,12 +11,17 @@ public class Application extends Controller {
     
     static Form<Course> courseForm = Form.form(Course.class);
 
-    public static void index() {
-        render();
+    public static Result index() {
+        return ok(
+            views.html.index.render()
+            );
+        
     }
     
+    public static void sayHello(String myName) {
+        render(myName);
+    }
 
-    
     public static Result courses() {
         return ok(
             views.html.courses.render(Course.all(), courseForm)
