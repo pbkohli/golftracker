@@ -5,7 +5,7 @@
 
 create table course (
   id                        bigint not null,
-  label                     varchar(255),
+  name                      varchar(255),
   constraint pk_course primary key (id))
 ;
 

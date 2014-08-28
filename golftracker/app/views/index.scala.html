@@ -1,25 +1,5 @@
-@(courses: List[Course], courseForm: Form[Course])
+#{extends 'main.scala.html' /}
+#{set title:'Home' /}
 
-@import helper._
+#{welcome /}
 
-@main("Course list") {
-    <h1>@courses.size() course(s)</h1>
-    <ul>
-        @for(course <- courses) {
-            <li>
-                @course.label
-                
-                @form(routes.Application.deleteCourse(course.id)) {
-                    <input type="submit" value="Delete">
-                    }
-            </li>
-            }
-    </ul>
-    
-    <h2>Add a new course:</h2>
-    @form(routes.Application.newCourse()) {
-        @inputText(courseForm("label"))
-        <input type = "submit" value="Create">
-    }
-    
-}

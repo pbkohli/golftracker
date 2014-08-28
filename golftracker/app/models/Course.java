@@ -14,7 +14,7 @@ public class Course extends Model {
     public Long id;
     
     @Required
-    public String label;
+    public String name;
     
     public static Finder<Long,Course> find = new Finder(
         Long.class, Course.class

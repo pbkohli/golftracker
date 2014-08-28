@@ -11,13 +11,15 @@ public class Application extends Controller {
     
     static Form<Course> courseForm = Form.form(Course.class);
 
-    public static Result index() {
-        return redirect(routes.Application.courses());
+    public static void index() {
+        render();
     }
+    
+
     
     public static Result courses() {
         return ok(
-            views.html.index.render(Course.all(), courseForm)
+            views.html.courses.render(Course.all(), courseForm)
             );
     }
     
@@ -25,7 +27,7 @@ public class Application extends Controller {
         Form<Course> filledForm = courseForm.bindFromRequest();
         if(filledForm.hasErrors()) {
             return badRequest(
-                views.html.index.render(Course.all(), filledForm)
+                views.html.courses.render(Course.all(), filledForm)
                 );
         } else {
             Course.create(filledForm.get());
@@ -38,5 +40,11 @@ public class Application extends Controller {
         return redirect(routes.Application.courses());
     }
     
-
+    public static Result scores() {
+        return TODO;
+    }
+    
+    public static Result stats() {
+        return TODO;
+    }
 }
