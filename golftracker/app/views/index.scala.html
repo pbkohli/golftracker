@@ -1,5 +1,25 @@
-<form action="@{Application.sayHello()}" method="GET">
-    <input type ="text" name="myName" />
-    <input type="submit" value="Say hello!" />
-</form>
 
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Golf Stat Tracker</title>
+    </head>
+    <body>
+        <h1>
+        Welcome to the Golf Stat Tracker!
+        </h1>
+        <h4>Welcome, User!</h4>
+    
+        <p>
+          <ul>
+            <li>Sign in</li>
+            <li><a href =@controllers.routes.Application.courses()>Courses</a></li>
+            <li>Post a score</li>
+            <li>Stats</li>
+          </ul>
+            
+        </p>
+    </body>
+</html>

@@ -18,9 +18,6 @@ public class Application extends Controller {
         
     }
     
-    public static void sayHello(String myName) {
-        render(myName);
-    }
 
     public static Result courses() {
         return ok(
