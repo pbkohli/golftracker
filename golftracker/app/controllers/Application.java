@@ -42,7 +42,7 @@ public class Application extends Controller {
         return redirect(routes.Application.courses());
     }
     
-    public static Result scores() {
+    public static Result myrounds() {
         return TODO;
     }
     
