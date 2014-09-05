@@ -10,7 +10,6 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 GET     /courses                    controllers.Application.courses()
 POST    /courses                    controllers.Application.newCourse()
 POST    /courses/:id/delete         controllers.Application.deleteCourse(id: Long)
-
-GET     /scores                     controllers.Application.scores()
+GET     /myrounds                   controllers.Application.myrounds()
 
 GET     /stats                      controllers.Application.stats()
