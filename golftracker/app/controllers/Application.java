@@ -21,26 +21,10 @@ public class Application extends Controller {
 
     public static Result courses() {
         return ok(
-            views.html.courses.render(Course.all(), courseForm)
+            views.html.courses.render()
             );
     }
     
-    public static Result newCourse() {
-        Form<Course> filledForm = courseForm.bindFromRequest();
-        if(filledForm.hasErrors()) {
-            return badRequest(
-                views.html.courses.render(Course.all(), filledForm)
-                );
-        } else {
-            Course.create(filledForm.get());
-            return redirect(routes.Application.courses());
-        }
-    }
-    
-    public static Result deleteCourse(Long id){
-        Course.delete(id);
-        return redirect(routes.Application.courses());
-    }
     
     public static Result myrounds() {
         return TODO;
@@ -49,4 +33,21 @@ public class Application extends Controller {
     public static Result stats() {
         return TODO;
     }
+    
+    public static Result login() {
+        return ok(
+            login.render(Form.form(Login.class))
+            );
+    }
+    
+    public static class Login {
+        public String email;
+        public String password;
+    }
+    
+    public static Result authenticate() {
+        Form<Login> loginForm = Form.form(Login.class).bindFromRequest();
+        return ok();
+    }
+    
 }
