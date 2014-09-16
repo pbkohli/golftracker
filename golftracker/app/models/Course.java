@@ -12,11 +12,17 @@ public class Course extends Model {
     
     @Id
     public Long id;
-    
     @Required
     public String name;
+    @ManyToMany(cascade = CascadeType.REMOVE)
+    public List<User> members = new ArrayList<User>();
     
-    public static Finder<Long,Course> find = new Finder(
+    public Course(String name, User owner) {
+        this.name = name;
+        this.members.add(owner);
+    }
+    
+    public static Model.Finder<Long,Course> find = new Finder(
         Long.class, Course.class
         );
     
@@ -24,11 +30,20 @@ public class Course extends Model {
         return find.all();
     }
     
-    public static void create(Course course) {
+    public static Course create(String name, String owner) {
+        Course course = new Course(name, User.find.ref(owner));
         course.save();
+        course.saveManyToManyAssociations("members");
+        return course;
     }
     
     public static void delete(Long id) {
         find.ref(id).delete();
+    }
+    
+    public static List<Course> findInvolving(String user){
+        return find.where()
+        .eq("members.email", user)
+        .findList();
     }
 }
