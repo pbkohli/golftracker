@@ -1,0 +1,70 @@
+
+# Users
+
+users:
+
+- !!models.User
+    email:      bob@gmail.com
+    name:       Bob
+    password:   secret
+    
+- !!models.User
+    email:      pbkohli@verizon.net
+    name:       Peter
+    password:   pass
+    
+#Courses
+
+courses:
+
+- !!models.Course
+    id:     1
+    name:   Sakonnet
+    members:
+        - !!models.User
+            email:  pbkohli@verizon.net
+        - !!models.User
+            email:  bob@gmail.com
+            
+- !!models.Course
+    id:     2
+    name:   Brae Burn
+    members:
+        - !!models.User
+            email:  pbkohli@verizon.net
+
+#Score
+
+scores:
+
+- !!models.Score
+    id:         1
+    date:       2013-01-01
+    golfer:     !!models.User
+                    email: pbkohli@verizon.net
+    course:     !!models.Course
+                    id: 1
+                    
+- !!models.Score
+    id:         2
+    date:       2013-02-05
+    golfer:     !!models.User
+                    email: pbkohli@verizon.net
+    course:     !!models.Course
+                    id: 1
+                    
+- !!models.Score
+    id:         3
+    date:       2013-02-15
+    golfer:     !!models.User
+                    email: pbkohli@verizon.net
+    course:     !!models.Course
+                    id: 2
+                    
+- !!models.Score
+    id:         4
+    date:       2013-02-07
+    golfer:     !!models.User
+                    email: bob@gmail.com
+    course:     !!models.Course
+                    id: 1

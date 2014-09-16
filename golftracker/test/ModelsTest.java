@@ -6,6 +6,12 @@ import static org.junit.Assert.*;
 import play.test.WithApplication;
 import static play.test.Helpers.*;
 import java.util.List;
+import java.util.*;
+import play.db.ebean.*;
+import play.data.validation.Constraints.*;
+import javax.persistence.*;
+import com.avaje.ebean.Ebean;
+import play.libs.*;
 
 /**
  * runs before tests
@@ -78,4 +84,27 @@ public class ModelsTest extends WithApplication {
          assertEquals(1, results.size());
          assertEquals("1/1/2013", results.get(0).date);
      }
+     
+     /**
+      * Test loaded data FIXME
+      **/
+      @Test
+      public void fullTest() {
+          Map<String,List<Object>> all = (Map<String,List<Object>>)Yaml.load("test-data.yml");
+                // Insert users first
+                Ebean.save(all.get("users"));
+                // Insert projects
+                Ebean.save(all.get("courses"));
+                for(Object project: all.get("courses")) {
+                      // Insert the project/user relation
+                    Ebean.saveManyToManyAssociations(project, "members");
+                }
+                // Insert tasks
+                Ebean.save(all.get("scores"));
+          
+         //Count things
+         assertEquals(2, User.find.findRowCount());
+         assertEquals(2, Course.find.findRowCount());
+      }
+      /**/
 }
