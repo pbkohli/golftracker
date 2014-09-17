@@ -14,11 +14,13 @@ public class Course extends Model {
     public Long id;
     @Required
     public String name;
+    public String state;
     @ManyToMany(cascade = CascadeType.REMOVE)
     public List<User> members = new ArrayList<User>();
     
-    public Course(String name, User owner) {
+    public Course(String name, String state, User owner) {
         this.name = name;
+        this.state = state;
         this.members.add(owner);
     }
     
@@ -30,8 +32,8 @@ public class Course extends Model {
         return find.all();
     }
     
-    public static Course create(String name, String owner) {
-        Course course = new Course(name, User.find.ref(owner));
+    public static Course create(String name, String state, String owner) {
+        Course course = new Course(name, state, User.find.ref(owner));
         course.save();
         course.saveManyToManyAssociations("members");
         return course;

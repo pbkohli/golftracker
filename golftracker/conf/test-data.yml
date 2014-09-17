@@ -20,6 +20,7 @@ courses:
 - !!models.Course
     id:     1
     name:   Sakonnet
+    state:  RI
     members:
         - !!models.User
             email:  pbkohli@verizon.net
@@ -29,6 +30,7 @@ courses:
 - !!models.Course
     id:     2
     name:   Brae Burn
+    state:   MA
     members:
         - !!models.User
             email:  pbkohli@verizon.net

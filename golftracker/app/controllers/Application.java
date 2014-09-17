@@ -12,17 +12,16 @@ public class Application extends Controller {
     static Form<Course> courseForm = Form.form(Course.class);
 
     public static Result index() {
-        return ok(
-            views.html.index.render()
-            );
+        return ok(index.render(
+            Course.find.all(),
+            Score.find.all()
+            ));
         
     }
     
 
     public static Result courses() {
-        return ok(
-            views.html.courses.render()
-            );
+        return TODO;
     }
     
     

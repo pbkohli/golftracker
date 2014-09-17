@@ -1,25 +1,27 @@
+@(courses: List[Course], scores: List[Score])
 
+@main(courses) {
 
-<!DOCTYPE html>
-
-<html>
-    <head>
-        <title>Golf Stat Tracker</title>
-    </head>
-    <body>
-        <h1>
-        Welcome to the Golf Stat Tracker!
-        </h1>
-        <h4>Welcome, User!</h4>
+    <header>
+        <hgroup>
+            <h1>Dashboard</h1>
+            <h2>Scores over all courses</h2>
+        </hgroup>
+    </header>
     
-        <p>
-          <ul>
-            <li><a href =@controllers.routes.Application.login()>Sign in</a></li>
-            <li><a href =@controllers.routes.Application.courses()>Courses</a></li>
-            <li><a href =@controllers.routes.Application.myrounds()>Post a score</a></li>
-            <li><a href =@controllers.routes.Application.stats()>Stats</a></li>
-          </ul>
-            
-        </p>
-    </body>
-</html>
+    <article class="scores">
+        @scores.groupBy(_.course).map {
+            case (course, scores) => {
+                    <header>
+                        <h3>@course.name</h3>
+                    </header>
+                    <ul class = "list">
+                        @scores.map { score =>
+                            @views.html.scores.item(score)
+                            }
+                    </ul>
+                }
+            }
+                
+    </article>
+}
