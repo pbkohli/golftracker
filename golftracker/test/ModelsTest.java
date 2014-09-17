@@ -105,6 +105,21 @@ public class ModelsTest extends WithApplication {
          //Count things
          assertEquals(2, User.find.findRowCount());
          assertEquals(2, Course.find.findRowCount());
+         assertEquals(4, Score.find.findRowCount());
+         
+         //Authenicate Users
+         assertNotNull(User.authenticate("bob@gmail.com", "secret"));
+         assertNotNull(User.authenticate("pbkohli@verizon.net", "pass"));
+         assertNull(User.authenticate("bob@gmail.com", "fakepass"));
+         assertNull(User.authenticate("fake@gmail.com", "secret"));
+         
+         //Find Bob's courses
+         List<Course> bobsCourses = Course.findInvolving("bob@gmail.com");
+         assertEquals(1, bobsCourses.size());
+         
+         //Find Peter's scores
+         List<Score> petesScores = Score.findScoreInvolving("pbkohli@verizon.net");
+         assertEquals(3, petesScores.size());
       }
       /**/
 }
