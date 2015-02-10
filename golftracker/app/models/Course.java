@@ -15,6 +15,7 @@ public class Course extends Model {
     @Required
     public String name;
     public String state;
+    //cascade type remove means delete a user will remove the association, not delete the course (CascadeType.ALL)
     @ManyToMany(cascade = CascadeType.REMOVE)
     public List<User> members = new ArrayList<User>();
     

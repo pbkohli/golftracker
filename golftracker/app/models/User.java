@@ -11,6 +11,7 @@ public class User extends Model {
     public String email;
     public String name;
     public String password;
+    public boolean isAdmin;
     
     public User(String email, String name, String password){
         this.email = email;
@@ -24,5 +25,11 @@ public class User extends Model {
         
     public static User authenticate(String email, String password){
         return find.where().eq("email", email).eq("password", password).findUnique();
-    }
+    };
+       // not sure what's getting rejected here
+    public User createCourse(String name, String state) {
+        Course newCourse = new Course(name, state, this);
+        this.save();
+        return this;
+    };
 }
