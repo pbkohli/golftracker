@@ -13,7 +13,7 @@
         </header>
         <nav>
         <h4 class="dashboard"><a href="#/">Dashboard</a></h4>
-        <ul id="courses">
+        <ul id="Home">
             @courses.groupBy(_.state).map {
                 case (group, courses) => {
                     @views.html.courses.group(group, courses)
